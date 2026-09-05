@@ -1,32 +1,96 @@
 .expressive-code {
   .frame {
     @apply shadow-none!;
-    position: relative;
+    position: relative !important;
   }
 
-  /* 盒子萌风格：代码块左上角红绿灯 */
-  .frame::before {
+  /* 顶栏画在 pre 内部，和代码共用同一条边框 */
+  .frame:not(.has-title):not(.is-terminal) {
+    --button-spacing: 0.35rem;
+  }
+
+  .frame:not(.has-title):not(.is-terminal) pre {
+    padding-top: 32px !important;
+  }
+
+  .frame:not(.has-title):not(.is-terminal)::after {
     content: "";
     position: absolute;
-    top: 0.85rem;
-    left: 0.9rem;
-    width: 0.75rem;
-    height: 0.75rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 32px;
+    background: #f4f4f5;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: inherit;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .frame:not(.has-title):not(.is-terminal)::before {
+    content: "";
+    position: absolute;
+    top: 11px;
+    left: 14px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: #fc625d;
     box-shadow:
-      1.25rem 0 0 #fdbc40,
-      2.5rem 0 0 #35cd4b;
-    z-index: 2;
+      16px 0 #fdbc40,
+      32px 0 #35cd4b;
+    z-index: 3;
     pointer-events: none;
+    opacity: 1;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  /* 终端/带文件名：改用已有顶栏，把淡色圆点换成三色点 */
+  .frame.is-terminal .header,
+  .frame.has-title.is-terminal .header {
+    background: #f4f4f5 !important;
+    justify-content: flex-start !important;
+  }
+
+  .frame.is-terminal .header::before {
+    left: 14px !important;
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    background: #fc625d !important;
+    box-shadow:
+      16px 0 #fdbc40,
+      32px 0 #35cd4b !important;
+    opacity: 1 !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
   }
 
   .header {
-    padding-left: 4.4rem !important;
+    min-height: 32px;
+    padding-left: 4rem !important;
   }
 
-  .frame:not(:has(.header)) pre {
-    padding-top: 2.15rem;
+  .copy {
+    inset-block-start: 2px !important;
+    inset-inline-end: 8px !important;
+    z-index: 10 !important;
+  }
+
+  .copy button {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+  }
+
+  /* 隐藏复制按钮的方框描边，只保留图标 */
+  .copy button::before {
+    display: none !important;
   }
 
   .title {
@@ -58,6 +122,24 @@
       background-color: var(--btn-regular-bg-active) !important;
     }
   }
+
+  /*
+   * 折叠插件按 8 行算 max-height 时没把 32px 顶栏算进去，
+   * 长代码块折叠后预览高度会被顶栏吃掉，代码区变空白。
+   */
+  .ec-collapse.ec-collapse--collapsed .ec-collapse__content {
+    max-height: max(16.5rem, calc(var(--ec-collapse-preview-height, 280px) + 40px)) !important;
+  }
+}
+
+:root:not(.dark) .expressive-code .frame:not(.has-title):not(.is-terminal) pre {
+  background: #fff !important;
+}
+
+:root.dark .expressive-code .frame:not(.has-title):not(.is-terminal)::after,
+:root.dark .expressive-code .frame.is-terminal .header {
+  background: #2c2c2e !important;
+  border-bottom-color: #3a3a3c !important;
 }
 
 /* 透明模式下的代码块样式 */
@@ -79,8 +161,12 @@ body.wallpaper-transparent .expressive-code .frame .ec-code__inner {
   background: transparent !important;
 }
 
-body.wallpaper-transparent .expressive-code .frame {
-  background-color: var(--card-bg-transparent) !important;
-  background: var(--card-bg-transparent) !important;
+body.wallpaper-transparent .expressive-code .frame:not(.has-title):not(.is-terminal)::after,
+body.wallpaper-transparent .expressive-code .frame.is-terminal .header {
+  background: color-mix(in srgb, #f4f4f5 78%, transparent) !important;
 }
 
+:root.dark body.wallpaper-transparent .expressive-code .frame:not(.has-title):not(.is-terminal)::after,
+:root.dark body.wallpaper-transparent .expressive-code .frame.is-terminal .header {
+  background: color-mix(in srgb, #2c2c2e 78%, transparent) !important;
+}

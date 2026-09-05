@@ -116,7 +116,7 @@ int intNum = (int)dNum;    // 强制转换
 
 但更关键的是**在大数据量下位移还更准**。下面这段代码同时用“乘法放大 1000 倍”和“位移放大 1024 倍”来算同一个逻辑：
 
-```csharp
+```csharp nocollapse
 void Start()
 {
     int a = 1000;
