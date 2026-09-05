@@ -94,7 +94,7 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 				"In Finalized Morrow, I Full Bloom",
 			],
 			// 主页横幅副标题字体大小
-			subtitleSize: "1.5rem",
+			subtitleSize: "1rem",
 			typewriter: {
 				// 是否启用打字机效果
 				// 打字机开启 → 循环显示所有副标题

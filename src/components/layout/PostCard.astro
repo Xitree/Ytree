@@ -3,12 +3,15 @@ import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
 import { Icon } from "astro-icon/components";
 import CoverImage from "@/components/common/CoverImage.astro";
+import ImageWrapper from "@/components/common/ImageWrapper.astro";
 import PostMetadata from "@/components/layout/PostMeta.astro";
 import { siteConfig } from "@/config";
+import { profileConfig } from "@/config/profileConfig";
 import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
+import { formatDateI18n } from "@/utils/date-utils";
 import { getApiUrlList, processCoverImageSync } from "@/utils/image-utils";
-import { getFileDirFromPath, getTagUrl } from "@/utils/url-utils";
+import { getCategoryUrl, getFileDirFromPath, getTagUrl } from "@/utils/url-utils";
 
 interface Props {
 	class?: string;
@@ -43,13 +46,31 @@ const {
 } = Astro.props;
 const className = Astro.props.class;
 
-// 处理随机图：如果image为"api"，则从配置的API获取随机图
 const processedImage = processCoverImageSync(image, entry.id);
 const apiUrls = getApiUrlList(image, entry.id);
 const hasCover =
 	processedImage !== undefined &&
 	processedImage !== null &&
 	processedImage !== "";
+
+const fallbackCovers = [
+	"assets/images/DesktopWallpaper/d1.avif",
+	"assets/images/DesktopWallpaper/d2.avif",
+	"assets/images/DesktopWallpaper/d3.avif",
+	"assets/images/DesktopWallpaper/d4.avif",
+	"assets/images/DesktopWallpaper/d5.avif",
+	"assets/images/DesktopWallpaper/d6.avif",
+	"assets/images/cover.avif",
+];
+const fallbackHash = Math.abs(
+	entry.id.split("").reduce((acc, char) => {
+		return ((acc << 5) - acc + char.charCodeAt(0)) | 0;
+	}, 0),
+);
+const listCoverSrc = hasCover
+	? processedImage
+	: fallbackCovers[fallbackHash % fallbackCovers.length];
+const listCoverBasePath = hasCover ? getFileDirFromPath(entry.filePath || "") : "";
 
 const coverWidth = "40%";
 
@@ -63,6 +84,9 @@ const shouldClampDescription = descriptionLines > 0;
 
 const { remarkPluginFrontmatter } = await render(entry);
 const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
+const wordCount = remarkPluginFrontmatter.words as number | undefined;
+const minuteCount = remarkPluginFrontmatter.minutes as number | undefined;
+const categoryLabel = category || i18n(I18nKey.uncategorized);
 ---
 
 <div
@@ -75,7 +99,6 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
   ]}
   style={style}
 >
-  <!-- pinned icon -->
   <div
     class:list={[
       "post-card-content",
@@ -86,6 +109,16 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
       },
     ]}
   >
+    <div class="post-card-category">
+      <a
+        href={getCategoryUrl(category || "")}
+        aria-label={`View all posts in the ${categoryLabel} category`}
+      >
+        <Icon is:inline name="fa7-regular:circle-dot" class="post-card-category-icon" />
+        {categoryLabel}
+      </a>
+    </div>
+
     <a
       href={url}
       class="post-card-title transition group w-full block font-bold mb-3 text-3xl text-90
@@ -105,7 +138,6 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
       }
     </a>
 
-    <!-- metadata -->
     <PostMetadata
       published={published}
       tags={tags}
@@ -116,7 +148,6 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
       className="mb-4 post-meta"
     />
 
-    <!-- description -->
     <div
       class:list={[
         "transition text-75 md:pr-4 description grow",
@@ -127,13 +158,52 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
       {descriptionText}
     </div>
 
-    <!-- tags -->
+    <div class="post-card-footer">
+      <div class="post-card-avatar">
+        <ImageWrapper
+          src={profileConfig.avatar || ""}
+          alt={profileConfig.name}
+          class="post-card-avatar-img"
+          widths={[80]}
+          sizes="55px"
+        />
+      </div>
+      <div class="post-card-footer-info">
+        <div class="post-card-footer-stats">
+          {
+            typeof wordCount === "number" && (
+              <span>
+                <Icon is:inline name="material-symbols:notes-rounded" />
+                {wordCount}
+                {i18n(I18nKey.wordsCount)}
+              </span>
+            )
+          }
+          {
+            typeof minuteCount === "number" && (
+              <span>
+                <Icon is:inline name="material-symbols:schedule-outline-rounded" />
+                {minuteCount}
+                {i18n(I18nKey.minutesCount)}
+              </span>
+            )
+          }
+        </div>
+        <div class="post-card-footer-author">
+          <span class="post-card-footer-at">@</span>
+          {profileConfig.name}
+          <span class="post-card-footer-dot"></span>
+          {formatDateI18n(published)}
+        </div>
+      </div>
+    </div>
+
     {
       showTags && (
         <div class="text-sm text-black/30 dark:text-white/30 flex flex-wrap gap-2 transition stats pt-3">
           {tags &&
             tags.length > 0 &&
-            tags.map((tag, _i) => (
+            tags.map((tag) => (
               <a
                 href={getTagUrl(tag)}
                 aria-label={`View all posts with the ${tag.trim()} tag`}
@@ -151,41 +221,38 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
       )
     }
   </div>
-  {
-    hasCover && (
-      <a
-        href={url}
-        aria-label={title}
-        class:list={[
-          "post-card-image",
-          "group",
-          "w-full md:w-(--coverWidth)",
-          "aspect-2/1 md:aspect-auto",
-          "relative md:self-stretch",
-          "rounded-(--radius-large) md:rounded-xl overflow-hidden",
-          "md:m-4",
-        ]}
-      >
-        <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/30 group-active:bg-black/50 transition" />
-        <div class="absolute pointer-events-none z-20 w-full h-full flex items-center justify-center ">
-          <Icon
-            is:inline
-            name="material-symbols:chevron-right-rounded"
-            class="transition opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 text-white text-5xl"
-          />
-        </div>
-        <CoverImage
-          src={processedImage}
-          basePath={getFileDirFromPath(entry.filePath || "")}
-          alt="Cover Image of the Post"
-          class="w-full h-full transition-transform duration-300 group-hover:scale-110 group-active:scale-115"
-          preview={true}
-          loading={loading}
-          apiUrls={apiUrls}
-        />
-      </a>
-    )
-  }
+
+  <a
+    href={url}
+    aria-label={title}
+    class:list={[
+      "post-card-image",
+      "group",
+      "w-full md:w-(--coverWidth)",
+      "aspect-2/1 md:aspect-auto",
+      "relative md:self-stretch",
+      "rounded-(--radius-large) md:rounded-xl overflow-hidden",
+      "md:m-4",
+    ]}
+  >
+    <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/30 group-active:bg-black/50 transition" />
+    <div class="absolute pointer-events-none z-20 w-full h-full flex items-center justify-center ">
+      <Icon
+        is:inline
+        name="material-symbols:chevron-right-rounded"
+        class="transition opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 text-white text-5xl"
+      />
+    </div>
+    <CoverImage
+      src={listCoverSrc}
+      basePath={listCoverBasePath}
+      alt="Cover Image of the Post"
+      class="w-full h-full transition-transform duration-300 group-hover:scale-110 group-active:scale-115"
+      preview={true}
+      loading={loading}
+      apiUrls={apiUrls}
+    />
+  </a>
 
   {
     !hasCover && (
@@ -218,96 +285,206 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
     line-clamp: var(--descriptionClampLines);
   }
 
-  /* === List Mode Mobile Styles === */
-  /* 移动端列表：封面在上方，保持单栏 */
+  .post-card-category,
+  .post-card-footer {
+    display: none;
+  }
+
+  .post-card-category a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    padding: 3px 10px;
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    border: 1px solid var(--line-divider);
+    border-radius: 25px;
+    background: var(--card-bg);
+    color: var(--tw-prose-body, inherit);
+    transition: transform 0.3s cubic-bezier(0.5, 2.5, 0.7, 0.7), box-shadow 0.3s ease;
+  }
+
+  .post-card-category a:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 2px 2px 0 0 var(--line-divider);
+  }
+
+  .post-card-category-icon {
+    width: 0.7rem;
+    height: 0.7rem;
+    color: #85b2f4;
+  }
+
+  .post-card-footer {
+    align-items: center;
+    gap: 0.9rem;
+    margin-top: auto;
+    padding-top: 0.9rem;
+  }
+
+  .post-card-avatar {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    flex-shrink: 0;
+    z-index: 0;
+  }
+
+  .post-card-avatar::after {
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 7px;
+    left: 3px;
+    transform: rotate(45deg);
+    z-index: -1;
+    border-radius: 4px;
+    border: 2px solid #ff00009c;
+  }
+
+  .post-card-avatar :global(img) {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+
+  .post-card-footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+  }
+
+  .post-card-footer-stats {
+    display: flex;
+    gap: 0.9rem;
+    font-size: 0.75rem;
+    color: var(--content-meta, #6b7280);
+  }
+
+  .post-card-footer-stats span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .post-card-footer-stats :global(svg),
+  .post-card-footer-author :global(svg) {
+    width: 0.85rem;
+    height: 0.85rem;
+  }
+
+  .post-card-footer-author {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--content-meta, #6b7280);
+  }
+
+  .post-card-footer-at {
+    margin-right: 0.15em;
+  }
+
+  .post-card-footer-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin: -2px 0.6rem 0;
+    border-radius: 100%;
+    background: #ff4c60;
+    flex-shrink: 0;
+  }
+
+  /* === List Mode：盒子萌左图右文 === */
   :global(.list-mode) .post-card-wrapper {
     flex-direction: column-reverse !important;
   }
 
-  :global(.list-mode) .has-cover .post-card-content {
-    width: 100% !important;
-    padding: 0.75rem !important;
-  }
-
-  :global(.list-mode) .has-cover .post-card-image {
-    position: relative !important;
-    width: 100% !important;
-    margin: 0 !important;
-    aspect-ratio: 2 / 1 !important;
-    border-radius: var(--radius-large) var(--radius-large) 0 0 !important;
-  }
-
-  :global(.list-mode) .post-card-title {
-    font-size: 1.125rem !important;
-    line-height: 1.75rem !important;
-    margin-bottom: 0.5rem !important;
-  }
-
-  :global(.list-mode) .stats {
-    gap: 0.25rem !important;
-  }
-
-  :global(.list-mode) .no-cover .post-card-content {
-    width: calc(100% - 52px - 12px) !important;
-  }
-
-  :global(.list-mode) .post-card-enter-btn {
+  :global(.list-mode .post-card-category),
+  :global(.list-mode .post-card-footer) {
     display: flex !important;
   }
 
-  :global(.list-mode) .stats a {
-    font-size: 0.65rem !important;
-    padding: 0.125rem 0.375rem !important;
-    height: 1.25rem !important;
+  :global(.list-mode .post-meta),
+  :global(.list-mode .stats),
+  :global(.list-mode .post-card-enter-btn) {
+    display: none !important;
   }
 
-  /* === Desktop List Mode：左图右文 === */
+  :global(.list-mode) .post-card-content {
+    width: 100% !important;
+    padding: 0.85rem 1rem 1rem !important;
+  }
+
+  :global(.list-mode) .post-card-image {
+    position: relative !important;
+    display: block !important;
+    width: calc(100% - 1.5rem) !important;
+    margin: 0.75rem 0.75rem 0 !important;
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+    border-radius: 0.5rem !important;
+  }
+
+  :global(.list-mode) .post-card-title {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+    font-weight: 600 !important;
+    margin: 0.5rem 0 !important;
+  }
+
+  :global(.list-mode) .description {
+    display: none !important;
+  }
+
   @media (min-width: 768px) {
     :global(.list-mode) .post-card-wrapper {
       flex-direction: row-reverse !important;
       align-items: stretch !important;
     }
 
-    :global(.list-mode) .has-cover .post-card-content {
+    :global(.list-mode) .post-card-content {
       width: auto !important;
       flex: 1 !important;
-      padding: 1.75rem 1.5rem !important;
+      min-width: 0 !important;
+      align-self: stretch !important;
+      height: auto !important;
+      display: flex !important;
+      flex-direction: column !important;
+      padding: 1.25rem 1.25rem 1.25rem 0.75rem !important;
     }
 
-    :global(.list-mode) .has-cover .post-card-image {
+    :global(.list-mode) .post-card-image {
       width: var(--coverWidth) !important;
-      margin: 1rem !important;
+      height: 220px !important;
+      margin: 1.25rem 0.5rem 1.25rem 1.25rem !important;
       aspect-ratio: auto !important;
-      border-radius: 0.75rem !important;
+      border-radius: 0.5rem !important;
+      align-self: stretch !important;
     }
 
     :global(.list-mode) .post-card-title {
-      font-size: 1.5rem !important;
-      line-height: 2rem !important;
-      margin-bottom: 0.75rem !important;
+      font-size: 1.05rem !important;
+      line-height: 1.55 !important;
+      margin: 0.55rem 0 0.45rem !important;
     }
 
     :global(.list-mode) .description {
-      font-size: inherit !important;
+      display: -webkit-box !important;
+      font-size: 0.82rem !important;
+      letter-spacing: 0.5px;
+      flex-grow: 0 !important;
     }
 
-    :global(.list-mode) .stats a {
-      font-size: 0.75rem !important;
-      padding: 0.25rem 0.5rem !important;
-      height: 1.5rem !important;
-    }
-
-    :global(.list-mode) .no-cover .post-card-content {
-      width: calc(100% - 52px - 12px) !important;
-    }
-
-    :global(.list-mode) .post-card-enter-btn {
-      display: flex !important;
+    :global(.list-mode .post-card-footer) {
+      margin-top: auto !important;
     }
   }
 
-  /* === Grid Mode Styles === */
-  /* 网格模式：封面在顶部（移动端和桌面端一致） */
+  /* === Grid Mode：保持原列表卡片结构 === */
   :global(.grid-mode) .post-card-wrapper {
     flex-direction: column-reverse !important;
     height: 100% !important;
@@ -320,7 +497,16 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
     flex-grow: 1 !important;
   }
 
-  :global(.grid-mode) .post-card-image {
+  :global(.grid-mode) .post-card-category,
+  :global(.grid-mode) .post-card-footer {
+    display: none !important;
+  }
+
+  :global(.grid-mode) .no-cover .post-card-image {
+    display: none !important;
+  }
+
+  :global(.grid-mode) .has-cover .post-card-image {
     position: relative !important;
     top: auto !important;
     bottom: auto !important;

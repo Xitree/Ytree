@@ -1,51 +1,125 @@
-/* 横幅文字阴影 - 更柔和的扩散效果 */
+/* 横幅标题：对齐盒子萌 pastel 流动渐变 + 字距 */
+.banner-title,
+.banner-subtitle,
+.banner-subtitle .typewriter {
+	background: linear-gradient(
+		to right,
+		#cbfdb1,
+		#acbff1,
+		#efa7ec,
+		#ffd6a5,
+		#ffadad,
+		#b5f4e2,
+		#ffd1dc,
+		#c5a3ff,
+		#89cff0,
+		#f0e68c
+	);
+	background-size: 1000% 100%;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	color: transparent;
+	animation: banner-fadeInUp 0.3s ease-out, banner-text-gradient 12s linear infinite;
+	letter-spacing: 2px;
+	text-shadow: none !important;
+}
+
+.banner-subtitle,
+.banner-subtitle .typewriter {
+	animation: banner-fadeInUp 0.3s ease-out 0.3s both, banner-text-gradient 12s linear infinite;
+}
+
+.banner-title,
+.banner-subtitle {
+	filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.45));
+}
+
 .banner-title {
-    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
-    /* 防止大字体标题溢出容器 */
-    overflow-wrap: break-word;
-    word-break: break-word;
-    /* 响应式字体大小：取用户配置值与视口宽度10%中的较小值，防止小屏幕溢出 */
-    font-size: var(--banner-title-size, 3rem);
-    font-size: min(var(--banner-title-size, 3rem), 10vw);
-    /* 独立字体设置，通过 fontConfig.bannerTitleFont 配置 */
-    font-family: var(--font-banner-title, inherit);
+	overflow-wrap: break-word;
+	word-break: break-word;
+	font-size: var(--banner-title-size, 3rem);
+	font-size: min(var(--banner-title-size, 3rem), 10vw);
+	font-family: var(--font-banner-title, inherit);
+	margin-bottom: 0;
 }
 
 .banner-subtitle {
-    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
-    /* 独立字体设置，通过 fontConfig.bannerSubtitleFont 配置 */
-    font-family: var(--font-banner-subtitle, inherit);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	column-gap: 0.4em;
+	margin-top: 1rem;
+	font-family: var(--font-banner-subtitle, inherit);
+}
+
+/* 副标题左侧彩色旋转星星，对应盒子萌 .fa-star.spinner */
+.banner-subtitle::before {
+	content: "★";
+	display: inline-block;
+	flex-shrink: 0;
+	font-size: 0.95em;
+	line-height: 1;
+	letter-spacing: 0;
+	background: linear-gradient(90.72deg, #cbfdb1 25%, #acbff1 25%, #efa7ec 50%, #ffd6a5 75%, #ffadad 75%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	color: transparent;
+	animation: banner-star-spin 2s linear infinite;
+	filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35));
 }
 
 /* 横幅背景暗层透明度 - 通过配置文件 common.dimOpacity 控制，内联样式覆盖 */
 
 .banner-post-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.65);
+	font-size: clamp(2rem, 4vw, 3rem);
+	text-shadow: 0 4px 24px rgba(0, 0, 0, 0.65);
 }
 
 .banner-page-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.65);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
-    line-height: 1.2;
+	font-size: clamp(2rem, 4vw, 3rem);
+	text-shadow: 0 4px 24px rgba(0, 0, 0, 0.65);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
+	line-height: 1.2;
 }
 
-/* .banner-page-title-icon {
-    font-size: 1.2em;
-    line-height: 1;
-    vertical-align: middle;
-    transform: translateY(0.08em);
-  } */
-
 .banner-page-title-text {
-    line-height: 1.2;
-    transition: opacity 0.25s ease;
+	line-height: 1.2;
+	transition: opacity 0.25s ease;
 }
 
 .banner-post-meta-list {
-    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+	text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes banner-text-gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 100% 50%;
+	}
+}
+
+@keyframes banner-star-spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.banner-title,
+	.banner-subtitle,
+	.banner-subtitle .typewriter,
+	.banner-subtitle::before {
+		animation: none;
+	}
 }

@@ -20,17 +20,10 @@ html.is-page-transitioning .banner-home-text-overlay {
 
 /* Banner text styles */
 .banner-title {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    animation: banner-fadeInUp 0.3s ease-out;
     font-weight: bold;
     /* 防止大字体标题溢出容器 */
     overflow-wrap: break-word;
     word-break: break-word;
-}
-
-.banner-subtitle {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-    animation: banner-fadeInUp 0.3s ease-out 0.3s both;
 }
 
 @keyframes banner-fadeInUp {
@@ -101,14 +94,14 @@ html.is-page-transitioning .banner-home-text-overlay {
         font-size: min(var(--banner-title-size, 3rem), 10vw) !important;
         line-height: 1.1 !important;
         margin-bottom: 0.5rem !important;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8) !important; /* 增强阴影 */
+        text-shadow: none !important;
     }
     
     /* 副标题字体优化 */
     .banner-subtitle {
         font-size: 1rem !important;
         line-height: 1.3 !important;
-        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7) !important;
+        text-shadow: none !important;
     }
     
 }
@@ -148,14 +141,14 @@ html.is-page-transitioning .banner-home-text-overlay {
         font-size: min(var(--banner-title-size, 3rem), 10vw) !important;
         line-height: 1.1 !important;
         margin-bottom: 0.75rem !important;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8) !important;
+        text-shadow: none !important;
     }
 
     /* 副标题字体优化 */
     .banner-subtitle {
         font-size: 1.125rem !important;
         line-height: 1.4 !important;
-        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7) !important;
+        text-shadow: none !important;
     }
 
 }
@@ -195,14 +188,14 @@ html.is-page-transitioning .banner-home-text-overlay {
         font-size: min(var(--banner-title-size, 3rem), 8vw) !important;
         line-height: 1.1 !important;
         margin-bottom: 0.85rem !important;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8) !important;
+        text-shadow: none !important;
     }
     
     /* 副标题字体优化 */
     .banner-subtitle {
         font-size: 1.25rem !important;
         line-height: 1.4 !important;
-        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7) !important;
+        text-shadow: none !important;
     }
 
 }
@@ -242,14 +235,14 @@ html.is-page-transitioning .banner-home-text-overlay {
         font-size: min(var(--banner-title-size, 3rem), 7vw) !important;
         line-height: 1.1 !important;
         margin-bottom: 1rem !important;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8) !important;
+        text-shadow: none !important;
     }
     
     /* 副标题字体优化 */
     .banner-subtitle {
         font-size: 1.5rem !important;
         line-height: 1.4 !important;
-        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7) !important;
+        text-shadow: none !important;
     }
     
 }
@@ -526,13 +519,10 @@ html[data-wallpaper-mode="fullscreen"] .absolute.w-full.z-30.no-banner-layout {
 /* 移动端暗色模式文字阴影优化（仅横幅/全屏壁纸模式） */
 @media (max-width: 1023px) and (prefers-color-scheme: dark) {
     html.dark[data-wallpaper-mode="banner"] .banner-title,
-    html.dark[data-wallpaper-mode="fullscreen"] .banner-title {
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-    }
-
+    html.dark[data-wallpaper-mode="fullscreen"] .banner-title,
     html.dark[data-wallpaper-mode="banner"] .banner-subtitle,
     html.dark[data-wallpaper-mode="fullscreen"] .banner-subtitle {
-        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        text-shadow: none;
     }
 }
 
