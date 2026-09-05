@@ -4,8 +4,8 @@ published: 2026-07-09
 pinned: false
 description: "用玩家血量 UI 示例对比 Unity 中 MVC、MVP、MVVM 三种分层模式的职责和适用场景"
 image: ""
-tags: ["Unity", "UI", "架构"]
-category: Unity/UI
+tags: ["Unity", "架构"]
+category: UI
 draft: false
 ---
 

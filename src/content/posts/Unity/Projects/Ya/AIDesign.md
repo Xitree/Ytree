@@ -4,8 +4,8 @@ published: 2026-07-02
 pinned: false
 description: "Github：Ya项目的AI设计"
 image: ""
-tags: ["Unity", "AI","行为树"]
-category: Unity/Projects/Ya
+tags: ["Unity", "AI", "行为树", "Ya"]
+category: 架构
 draft: false
 ---
 

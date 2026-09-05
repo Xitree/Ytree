@@ -4,8 +4,8 @@ published: 2026-07-02
 pinned: false
 description: "Ya 项目中基于 ScriptableObject 的状态转换配置表设计"
 image: ""
-tags: ["Unity", "ScriptableObject", "状态机"]
-category: Unity/Projects/Ya
+tags: ["Unity", "ScriptableObject", "状态机", "Ya"]
+category: 架构
 draft: false
 ---
 

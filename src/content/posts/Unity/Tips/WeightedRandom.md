@@ -5,7 +5,7 @@ pinned: false
 description: "用一个简单函数理解按权重随机选择 LevelPath 的实现思路"
 image: ""
 tags: ["Unity", "随机", "权重"]
-category: Unity/Tips
+category: 技巧
 draft: false
 ---
 

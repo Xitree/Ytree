@@ -4,8 +4,8 @@ published: 2026-07-03
 pinned: false
 description: "我在 Ya 项目中整理的 Animator 过渡期间 Current State、Next State、IsInTransition 与 normalizedTime 对应关系"
 image: ""
-tags: ["Unity", "Animator", "动画过渡"]
-category: Unity/Projects/Ya
+tags: ["Unity", "Animator", "动画过渡", "Ya"]
+category: 动画
 draft: false
 ---
 

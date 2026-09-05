@@ -4,8 +4,8 @@ published: 2026-07-10
 pinned: false
 description: "拆解这个塔防项目的 UI 框架：在 Game Framework UI 模块之上做的 Form 中心式、数据驱动、栈式生命周期设计，并和 MVC/MVP/MVVM 做定位对比。"
 image: ""
-tags: ["Unity", "UI", "Game Framework", "架构"]
-category: Unity/Projects/TowerGF
+tags: ["Unity", "Game Framework", "架构", "TowerGF"]
+category: UI
 draft: false
 ---
 

@@ -4,8 +4,8 @@ published: 2026-07-12
 pinned: false
 description: "为什么帧同步不能用 float？定点数怎么解决多平台不一致的问题，以及为什么用位移放大 1024 倍比乘法放大 1000 倍更稳。"
 image: ""
-tags: ["Unity", "帧同步", "定点数", "C#"]
-category: Unity/Tips
+tags: ["Unity", "帧同步", "定点数"]
+category: 原理
 draft: false
 ---
 

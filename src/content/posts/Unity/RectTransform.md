@@ -5,7 +5,7 @@ pinned: false
 description: "整理 Unity UGUI 中 RectTransform、锚点、Pivot、Offset、SizeDelta 与常用 API 的理解"
 image: ""
 tags: ["Unity", "UGUI", "RectTransform"]
-category: Unity
+category: UI
 draft: false
 ---
 
