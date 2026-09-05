@@ -43,11 +43,20 @@
 
 /* 通用滚动阴影：用于提升导航栏与页面内容的分层感 */
 #navbar.navbar-sticky-shadow>div {
-    box-shadow: var(--shadow-navbar) !important;
+    box-shadow: var(--brutal-shadow) !important;
+}
+
+/* 滚动后：实心底 + 2px 描边，弱化毛玻璃 */
+.enable-card-border #navbar.scrolled>div,
+.enable-card-border #navbar.navbar-sticky-shadow>div {
+    background-color: var(--card-bg) !important;
+    border: var(--card-border-width) solid var(--line-divider) !important;
+    box-shadow: var(--brutal-shadow) !important;
+    backdrop-filter: blur(4px) !important;
 }
 
 :root.dark #navbar.navbar-sticky-shadow>div {
-    box-shadow: var(--shadow-navbar-dark) !important;
+    box-shadow: var(--brutal-shadow) !important;
 }
 
 /* semifull 模式的透明阶段不单独显示 sticky shadow，避免 8px 和 50px 两段跳变 */
@@ -278,8 +287,8 @@ body:has(#wallpaper-wrapper) .float-panel,
 body.wallpaper-transparent .dropdown-content,
 body.wallpaper-transparent .float-panel {
     background: rgba(255, 255, 255, 0.95) !important;
-    box-shadow: var(--shadow-md) !important;
-    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: var(--brutal-shadow) !important;
+    border: var(--card-border-width) solid var(--line-divider) !important;
 }
 
 /* 暗色主题 */
@@ -290,8 +299,8 @@ body.wallpaper-transparent .float-panel {
 :root.dark body.wallpaper-transparent .dropdown-content,
 :root.dark body.wallpaper-transparent .float-panel {
     background: rgba(23, 23, 23, 0.95) !important;
-    box-shadow: var(--shadow-md) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: var(--brutal-shadow) !important;
+    border: var(--card-border-width) solid var(--line-divider) !important;
 }
 
 /* ============================================
@@ -317,4 +326,16 @@ body.wallpaper-transparent #navbar-wrapper #navbar[data-full-width="true"] > div
     .navbar-icon {
         display: none !important;
     }
+}
+
+/* 导航项 hover 胶囊 */
+#navbar .dropdown-trigger,
+#navbar a.btn-plain.rounded-full {
+    border: 1px solid transparent;
+}
+#navbar .dropdown-trigger:hover,
+#navbar a.btn-plain.rounded-full:hover {
+    border-color: var(--line-divider);
+    box-shadow: var(--brutal-shadow);
+    transform: translate(-1px, -1px);
 }

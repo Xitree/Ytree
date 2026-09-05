@@ -36,9 +36,9 @@ const className = Astro.props.class;
     style={style}
 >
     {name && showTitle && (
-        <div class="widget-title font-bold transition text-lg text-neutral-900 dark:text-neutral-100 relative ml-8 mt-4 mb-2
-            before:w-1 before:h-4 before:rounded-md before:bg-(--primary)
-            before:absolute before:left-[-16px] before:top-[5.5px] flex items-center justify-between">
+        <div class="widget-title font-bold transition text-sm text-neutral-900 dark:text-neutral-100
+            mx-4 mt-4 mb-2 inline-flex items-center justify-between gap-2
+            border-2 border-(--line-divider) rounded-full px-3 py-1">
             <span class="widget-name">{name}</span>
             <slot name="title-icon" />
         </div>
@@ -78,6 +78,10 @@ const className = Astro.props.class;
 </widget-layout>
 
 <style define:vars={{ collapsedHeight }}>
+    widget-layout {
+        display: block;
+    }
+
     .collapsed {
         height: var(--collapsedHeight);
     }
