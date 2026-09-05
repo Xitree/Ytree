@@ -1,6 +1,32 @@
 .expressive-code {
   .frame {
     @apply shadow-none!;
+    position: relative;
+  }
+
+  /* 盒子萌风格：代码块左上角红绿灯 */
+  .frame::before {
+    content: "";
+    position: absolute;
+    top: 0.85rem;
+    left: 0.9rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: #fc625d;
+    box-shadow:
+      1.25rem 0 0 #fdbc40,
+      2.5rem 0 0 #35cd4b;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .header {
+    padding-left: 4.4rem !important;
+  }
+
+  .frame:not(:has(.header)) pre {
+    padding-top: 2.15rem;
   }
 
   .title {
