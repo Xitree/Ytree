@@ -12,6 +12,7 @@ import { i18n } from "@/i18n/translation";
 import { formatDateI18n } from "@/utils/date-utils";
 import { getApiUrlList, processCoverImageSync } from "@/utils/image-utils";
 import { getCategoryUrl, getFileDirFromPath, getTagUrl } from "@/utils/url-utils";
+import postListDeco from "../../assets/images/boxmoe-post-list.png";
 
 interface Props {
 	class?: string;
@@ -274,6 +275,15 @@ const categoryLabel = category || i18n(I18nKey.uncategorized);
       </a>
     )
   }
+
+  <img
+    class="post-card-deco"
+    src={postListDeco.src}
+    width={postListDeco.width}
+    height={postListDeco.height}
+    alt=""
+    aria-hidden="true"
+  />
 </div>
 
 <style define:vars={{ coverWidth, descriptionClampLines }}>
@@ -286,7 +296,8 @@ const categoryLabel = category || i18n(I18nKey.uncategorized);
   }
 
   .post-card-category,
-  .post-card-footer {
+  .post-card-footer,
+  .post-card-deco {
     display: none;
   }
 
@@ -481,6 +492,19 @@ const categoryLabel = category || i18n(I18nKey.uncategorized);
 
     :global(.list-mode .post-card-footer) {
       margin-top: auto !important;
+    }
+
+    :global(.list-mode .post-card-deco) {
+      display: block !important;
+      position: absolute;
+      right: 8px;
+      bottom: 0;
+      width: 162px;
+      height: 75px;
+      object-fit: contain;
+      pointer-events: none;
+      user-select: none;
+      z-index: 3;
     }
   }
 
