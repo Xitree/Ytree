@@ -1,0 +1,39 @@
+---
+import { bodyBackgroundConfig } from "@/config";
+
+const { enable, src } = bodyBackgroundConfig;
+---
+
+{enable && <div class="body-background" aria-hidden="true" style={`--body-bg-image: url("${src}")`}></div>}
+
+<style>
+  .body-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .body-background::before,
+  .body-background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--body-bg-image) 7% 100px no-repeat;
+    background-size: contain;
+  }
+
+  .body-background::after {
+    transform: scaleX(-1);
+  }
+
+  :global(.dark) .body-background {
+    opacity: 0.28;
+  }
+
+  @media (max-width: 1200px) {
+    .body-background {
+      display: none;
+    }
+  }
+</style>

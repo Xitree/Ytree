@@ -3,36 +3,34 @@
 
 // 类型导出
 export type {
-	AdConfig,
-	AnalyticsConfig,
-	AnnouncementConfig,
-	BackgroundWallpaperConfig,
-	CommentConfig,
-	CoverImageConfig,
-	ExpressiveCodeConfig,
-	FooterConfig,
-	GalleryAlbum,
-	GalleryConfig,
-	LicenseConfig,
-	MusicPlayerConfig,
-	NavBarConfig,
-	PlantUMLConfig,
-	ProfileConfig,
-	SakuraConfig,
-	SidebarLayoutConfig,
-	SiteConfig,
-	SponsorConfig,
-	SponsorItem,
-	SponsorMethod,
-	WidgetComponentConfig,
-	WidgetComponentType,
-	WidgetSpecificConfig,
+    AdConfig,
+    AnalyticsConfig,
+    AnnouncementConfig,
+    BackgroundWallpaperConfig, BodyBackgroundConfig, CommentConfig,
+    CoverImageConfig,
+    ExpressiveCodeConfig,
+    FooterConfig,
+    GalleryAlbum,
+    GalleryConfig,
+    LicenseConfig,
+    MusicPlayerConfig,
+    NavBarConfig,
+    PlantUMLConfig,
+    ProfileConfig, SakuraConfig,
+    SidebarLayoutConfig,
+    SiteConfig,
+    SponsorConfig,
+    SponsorItem,
+    SponsorMethod,
+    WidgetComponentConfig,
+    WidgetComponentType,
+    WidgetSpecificConfig
 } from "../types/config";
 export type {
-	BuiltinFontProvider,
-	CustomFontProvider,
-	FontDefinition,
-	FontSelectionConfig,
+    BuiltinFontProvider,
+    CustomFontProvider,
+    FontDefinition,
+    FontSelectionConfig
 } from "../types/fontConfig"; // 字体类型定义
 export { analyticsConfig } from "./analyticsConfig"; // 统计分析配置
 export { announcementConfig } from "./announcementConfig"; // 公告配置
@@ -41,7 +39,7 @@ export { backgroundWallpaper } from "./backgroundWallpaper"; // 背景壁纸配�
 // 功能配置
 export { commentConfig } from "./commentConfig"; // 评论系统配置
 export { coverImageConfig } from "./coverImageConfig"; // 封面图配置
-export { sakuraConfig } from "./effectsConfig"; // 动画特效配置（樱花等）
+export { bodyBackgroundConfig, sakuraConfig } from "./effectsConfig"; // 动画特效配置（底板、樱花等）
 export { expressiveCodeConfig } from "./expressiveCodeConfig"; // 代码高亮配置
 export { fontConfig, fontsList } from "./fontConfig"; // 字体配置
 export { footerConfig } from "./footerConfig"; // 页脚配置
@@ -59,3 +57,4 @@ export { sidebarLayoutConfig } from "./sidebarConfig"; // 侧边栏布局配置
 // 核心配置
 export { siteConfig } from "./siteConfig"; // 站点基础配置
 export { sponsorConfig } from "./sponsorConfig"; // 打赏配置
+

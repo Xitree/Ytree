@@ -6,6 +6,7 @@ import UmamiAnalytics from "@components/analytics/UmamiAnalytics.astro";
 import FancyboxManager from "@components/features/FancyboxManager.astro";
 import FontSetup from "@components/features/FontSetup.astro";
 import MusicManager from "@components/features/MusicManager.astro";
+import BodyBackground from "@components/features/BodyBackground.astro";
 import SakuraEffect from "@components/features/SakuraEffect.astro";
 import ConfigCarrier from "@components/layout/ConfigCarrier.astro";
 
@@ -565,6 +566,7 @@ const siteLang = lang.replace("_", "-");
     ]}
   >
 
+    <BodyBackground />
     <div id="progress-bar"></div>
 
     <!-- 页面顶部渐变高光效果 - 只在full和semifull模式下显示 -->
@@ -721,14 +723,13 @@ const siteLang = lang.replace("_", "-");
 </style>
 
 <script>
-  import { pathsEqual, url } from "@/utils/url-utils";
-  import {
-    BANNER_HEIGHT,
-    BANNER_HEIGHT_HOME,
-    BANNER_HEIGHT_EXTEND,
-    // MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
-  } from "@/constants/constants";
   import { backgroundWallpaper, expressiveCodeConfig, siteConfig } from "@/config";
+import {
+BANNER_HEIGHT,
+BANNER_HEIGHT_EXTEND,
+BANNER_HEIGHT_HOME,
+} from "@/constants/constants";
+import { pathsEqual, url } from "@/utils/url-utils";
 
   /* Preload fonts */
   // (async function() {
@@ -1651,8 +1652,8 @@ function disableAnimation() {
   }
 
   // Initialize wallpaper mode
-  import { initWallpaperMode, initThemeListener } from "@/utils/setting-utils";
   import { initIconLoader } from "@/utils/icon-loader";
+import { initThemeListener, initWallpaperMode } from "@/utils/setting-utils";
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
       updateMainGridCols();

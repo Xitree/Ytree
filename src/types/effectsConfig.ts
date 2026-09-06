@@ -1,3 +1,8 @@
+export type BodyBackgroundConfig = {
+	enable: boolean; // 是否启用页面底板装饰图
+	src: string; // 底板图片路径，建议放 public 目录
+};
+
 export type SakuraConfig = {
 	enable: boolean; // 是否启用樱花特效
 	switchable?: boolean; // 是否允许用户在设置中切换樱花特效

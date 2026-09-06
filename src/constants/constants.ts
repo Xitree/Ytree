@@ -19,8 +19,8 @@ export const BANNER_HEIGHT_HOME = BANNER_HEIGHT + BANNER_HEIGHT_EXTEND;
 // The height the main panel overlaps the banner, unit: rem
 export const MAIN_PANEL_OVERLAPS_BANNER_HEIGHT = 3.5;
 
-// Page width: rem
-export const PAGE_WIDTH = 100;
+// Page width: rem（82.5rem = 1320px @ 16px，对齐盒子萌内容区）
+export const PAGE_WIDTH = 82.5;
 
 // Category constants
 export const UNCATEGORIZED = "uncategorized";

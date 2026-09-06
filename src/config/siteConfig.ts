@@ -40,8 +40,8 @@ export const siteConfig: SiteConfig = {
 
 	// 页面整体宽度（单位：rem）
 	// 数值越大可以让页面内容区域更宽
-	// 在使用单侧栏边栏时，建议调低一些宽度以获得更好的视觉效果。
-	pageWidth: 100,
+	// 82.5rem = 1320px（根字号 16px），对齐盒子萌 Bootstrap container 的 xxl 宽度，给左右底板图形留出边距
+	pageWidth: 82.5,
 
 	// 网站Card样式配置
 	card: {

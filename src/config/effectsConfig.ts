@@ -1,6 +1,13 @@
-import type { SakuraConfig } from "../types/effectsConfig";
+import type { BodyBackgroundConfig, SakuraConfig } from "../types/effectsConfig";
 
 // 特效配置 - 集中管理所有动画特效
+
+export const bodyBackgroundConfig: BodyBackgroundConfig = {
+	// 是否启用盒子萌风格的左右底板装饰
+	enable: true,
+	// 底板图片，左右各铺一份（右侧自动镜像）
+	src: "/images/boxmoe-background.svg",
+};
 
 export const sakuraConfig: SakuraConfig = {
 	// 是否启用樱花特效
