@@ -1,5 +1,5 @@
 ---
-title: 确认之后才写入
+title: 截图还原 UGUI 面板 - 总结
 published: 2026-09-28
 pinned: false
 description: "截图还原面板收住的四步：坐标按舞台根算完、两道确认才写入、改旧面板只动 diff、绑定留给 UIBinder。"

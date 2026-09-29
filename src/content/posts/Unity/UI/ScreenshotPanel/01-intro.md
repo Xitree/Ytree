@@ -1,5 +1,5 @@
 ---
-title: 截图还原 UGUI 面板
+title: 截图还原 UGUI 面板 - SKILL 介绍
 published: 2026-09-28
 pinned: false
 description: "效果图还原成 UGUI 预制体。视觉认控件，引导层上的 RawImage 当尺子，确认之前不写入。"

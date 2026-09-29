@@ -1,5 +1,5 @@
 ---
-title: 从 project.md 到确认写入
+title: 截图还原 UGUI 面板 - 快速开始
 published: 2026-09-28
 pinned: false
 description: "把技能目录拷进项目，填 project.md，摆好 _ArtRef，再确认树和资源表。"

@@ -1,5 +1,5 @@
 ---
-title: 用一张弹窗把坐标算完
+title: 截图还原 UGUI 面板 - 样例
 published: 2026-09-28
 pinned: false
 description: "用剧本解锁弹窗 UnlockDramaPopupPanel 的 720×1640，把确认过的节点表和两处坐标算完。"

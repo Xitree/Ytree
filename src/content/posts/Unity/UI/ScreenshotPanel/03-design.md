@@ -1,5 +1,5 @@
 ---
-title: 引导层、门闩和三条入口
+title: 截图还原 UGUI 面板 - 核心设计
 published: 2026-09-28
 pinned: false
 description: "引导层换算、两道确认、入口 A/B/C，以及 Prefab 模式打开时改哪一份根。"
