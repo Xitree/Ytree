@@ -4,7 +4,7 @@ published: 2026-09-28
 pinned: false
 description: "引导层换算、两道确认、入口 A/B/C，以及 Prefab 模式打开时改哪一份根。"
 image: ""
-tags: ["Unity", "UGUI"]
+tags: ["Unity", "UGUI","SKILL"]
 category: UI
 draft: false
 ---

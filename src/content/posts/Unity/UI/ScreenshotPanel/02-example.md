@@ -4,7 +4,7 @@ published: 2026-09-28
 pinned: false
 description: "用剧本解锁弹窗 UnlockDramaPopupPanel 的 720×1640，把确认过的节点表和两处坐标算完。"
 image: ""
-tags: ["Unity", "UGUI"]
+tags: ["Unity", "UGUI","SKILL"]
 category: UI
 draft: false
 ---

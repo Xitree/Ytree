@@ -4,7 +4,7 @@ published: 2026-09-28
 pinned: false
 description: "把技能目录拷进项目，填 project.md，摆好 _ArtRef，再确认树和资源表。"
 image: ""
-tags: ["Unity", "UGUI"]
+tags: ["Unity", "UGUI","SKILL"]
 category: UI
 draft: false
 ---

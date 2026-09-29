@@ -4,7 +4,7 @@ published: 2026-09-28
 pinned: false
 description: "截图还原面板收住的四步：坐标按舞台根算完、两道确认才写入、改旧面板只动 diff、绑定留给 UIBinder。"
 image: ""
-tags: ["Unity", "UGUI"]
+tags: ["Unity", "UGUI","SKILL"]
 category: UI
 draft: false
 ---
