@@ -6,7 +6,7 @@ description: "截图还原面板收住的四步：坐标按舞台根算完、两
 image: ""
 tags: ["Unity", "UGUI"]
 category: UI
-draft: true
+draft: false
 ---
 
 ![](https://cdn.nlark.com/yuque/0/2026/png/55136814/1790592849412-9ae0c887-307f-4009-8d68-58784043ea19.png)

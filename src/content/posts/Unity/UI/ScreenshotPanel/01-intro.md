@@ -6,7 +6,7 @@ description: "效果图还原成 UGUI 预制体。视觉认控件，引导层上
 image: ""
 tags: ["Unity", "UGUI"]
 category: UI
-draft: true
+draft: false
 ---
 
 > 一个根据美术出的效果图+预制体内的引导层生成具体的UGUI界面的SKILL

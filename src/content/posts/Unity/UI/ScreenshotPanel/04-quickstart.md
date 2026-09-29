@@ -6,7 +6,7 @@ description: "把技能目录拷进项目，填 project.md，摆好 _ArtRef，�
 image: ""
 tags: ["Unity", "UGUI"]
 category: UI
-draft: true
+draft: false
 ---
 
 ## AI对话框提示词
