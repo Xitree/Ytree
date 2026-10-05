@@ -8,6 +8,7 @@
 @import './tags.css';
 @import './gallery.css';
 @import './anime-bangumi.css';
+@import './cursor.css';
 
 @plugin '@tailwindcss/typography';
 

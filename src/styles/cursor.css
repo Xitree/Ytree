@@ -1,0 +1,66 @@
+/* 自定义鼠标指针：默认箭头 + 可点击手型 */
+
+html {
+	cursor: url("/cursors/default.cur") 6 3, auto !important;
+}
+
+html *,
+html *::before,
+html *::after {
+	cursor: inherit !important;
+}
+
+a,
+button,
+summary,
+label,
+select,
+[role="button"],
+[role="link"],
+[role="tab"],
+[role="menuitem"],
+[role="option"],
+[role="slider"],
+.cursor-pointer,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="checkbox"],
+input[type="radio"],
+input[type="file"],
+input[type="range"],
+input[type="color"],
+input[type="image"] {
+	cursor: url("/cursors/pointer.cur") 11 3, pointer !important;
+}
+
+input:not([type]),
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+textarea,
+[contenteditable="true"] {
+	cursor: text !important;
+}
+
+.cursor-zoom-in,
+.custom-md img,
+#post-cover img {
+	cursor: zoom-in !important;
+}
+
+:disabled,
+[aria-disabled="true"],
+.cursor-not-allowed,
+.disabled\:cursor-not-allowed:disabled {
+	cursor: not-allowed !important;
+}
