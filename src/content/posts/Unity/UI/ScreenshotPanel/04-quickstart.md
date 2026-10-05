@@ -9,6 +9,8 @@ category: UI
 draft: false
 ---
 
+**截图还原系列：** [SKILL 介绍](/posts/unity/ui/screenshotpanel/01-intro/) · [样例](/posts/unity/ui/screenshotpanel/02-example/) · [核心设计](/posts/unity/ui/screenshotpanel/03-design/) · 快速开始 · [总结](/posts/unity/ui/screenshotpanel/05-summary/)
+
 ## AI对话框提示词
 
 ![](https://cdn.nlark.com/yuque/0/2026/png/55136814/1790594062955-5d85b088-5a95-4229-bb9d-1800058dd781.png)
@@ -25,6 +27,3 @@ draft: false
 
 > [!NOTE]
 > 之后对AI的会话确认两次，一次是树结构，一次是资源表，一个完整的UGUI面板就出现了
-
-上一篇：[引导层、门闩和三条入口](/posts/unity/ui/screenshotpanel/03-design/)
-下一篇：[确认之后才写入](/posts/unity/ui/screenshotpanel/05-summary/)

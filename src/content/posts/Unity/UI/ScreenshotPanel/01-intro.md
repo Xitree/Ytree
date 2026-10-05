@@ -9,6 +9,8 @@ category: UI
 draft: false
 ---
 
+**截图还原系列：** SKILL 介绍 · [样例](/posts/unity/ui/screenshotpanel/02-example/) · [核心设计](/posts/unity/ui/screenshotpanel/03-design/) · [快速开始](/posts/unity/ui/screenshotpanel/04-quickstart/) · [总结](/posts/unity/ui/screenshotpanel/05-summary/)
+
 > 一个根据美术出的效果图+预制体内的引导层生成具体的UGUI界面的SKILL
 
 技能目录是 `ugui-panel-from-screenshot`。它把两件事拆开。视觉负责认控件、在效果图上框像素。预制体里已经摆好的那张 `RawImage`（节点名 `_ArtRef`）负责坐标系。人确认两道门闩之后，才经 Unity MCP 写进预制体。
@@ -20,5 +22,3 @@ draft: false
 **比较精准的关键：**
 
 截图告诉AI认清每个控件，预制体中的引导层则告诉AI具体的布局像素
-
-下一篇：[用一张弹窗把坐标算完](/posts/unity/ui/screenshotpanel/02-example/)

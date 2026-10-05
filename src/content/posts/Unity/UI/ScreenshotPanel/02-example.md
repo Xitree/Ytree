@@ -9,6 +9,8 @@ category: UI
 draft: false
 ---
 
+**截图还原系列：** [SKILL 介绍](/posts/unity/ui/screenshotpanel/01-intro/) · 样例 · [核心设计](/posts/unity/ui/screenshotpanel/03-design/) · [快速开始](/posts/unity/ui/screenshotpanel/04-quickstart/) · [总结](/posts/unity/ui/screenshotpanel/05-summary/)
+
 ## AI输出的中间结果
 
 ### 第一段（可读树+节点表）
@@ -78,6 +80,3 @@ UnlockDramaPopupPanel                 RectTransform   居中 720x1640  保持现
 **产出的UGUI面板**
 
 ![](https://cdn.nlark.com/yuque/0/2026/png/55136814/1790593142201-2953bdb5-f983-4894-83b8-84d43015492e.png)
-
-上一篇：[截图还原 UGUI 面板](/posts/unity/ui/screenshotpanel/01-intro/)
-下一篇：[引导层、门闩和三条入口](/posts/unity/ui/screenshotpanel/03-design/)

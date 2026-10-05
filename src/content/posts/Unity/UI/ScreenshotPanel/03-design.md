@@ -9,6 +9,8 @@ category: UI
 draft: false
 ---
 
+**截图还原系列：** [SKILL 介绍](/posts/unity/ui/screenshotpanel/01-intro/) · [样例](/posts/unity/ui/screenshotpanel/02-example/) · 核心设计 · [快速开始](/posts/unity/ui/screenshotpanel/04-quickstart/) · [总结](/posts/unity/ui/screenshotpanel/05-summary/)
+
 ![](https://cdn.nlark.com/yuque/0/2026/png/55136814/1790595076187-38ad5db9-d03c-48ad-9152-447f61658514.png)
 
 ![](https://cdn.nlark.com/yuque/0/2026/png/55136814/1790594776596-119b8c50-20f4-4872-a023-5ec748d6bc11.png)
@@ -88,6 +90,3 @@ cy = Dh/2 - (y + h/2) * scale
 ## 如何搭配UIBinder的？
 
 在该SKILL下的`project.md` 中 设置好对应的配置，这样在做预制体的时候就能按UIBinder的命名形式去做
-
-上一篇：[用一张弹窗把坐标算完](/posts/unity/ui/screenshotpanel/02-example/)
-下一篇：[从 project.md 到确认写入](/posts/unity/ui/screenshotpanel/04-quickstart/)

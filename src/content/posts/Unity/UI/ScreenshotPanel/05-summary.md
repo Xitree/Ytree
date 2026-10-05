@@ -9,6 +9,8 @@ category: UI
 draft: false
 ---
 
+**截图还原系列：** [SKILL 介绍](/posts/unity/ui/screenshotpanel/01-intro/) · [样例](/posts/unity/ui/screenshotpanel/02-example/) · [核心设计](/posts/unity/ui/screenshotpanel/03-design/) · [快速开始](/posts/unity/ui/screenshotpanel/04-quickstart/) · 总结
+
 ![](https://cdn.nlark.com/yuque/0/2026/png/55136814/1790592849412-9ae0c887-307f-4009-8d68-58784043ea19.png)
 
 模型看着效果图，认得出书、光、立即穿越。以前接着就要它把 `anchoredPosition` 填进预制体。填错差的是半个面板，而且树还没看过就可能已经存盘。这套流程把这件事拆开：认控件还是模型的，进预制体的数和 Sprite 是确认过的。
@@ -34,5 +36,3 @@ draft: false
 `generateScripts` 是 false。这次停在预制体。节点名已经按约定写好，`[ButtonEffect]ConfirmBtn`、`[ExText]DramaName` 这种。选中面板按 Shift+B，绑定脚本由 UIBinder 生成。
 
 摆界面时模型不用再临场发明锚点和 Sprite 路径。它交出树和资源表，经过自己确认，AI再写。
-
-上一篇：[从 project.md 到确认写入](/posts/unity/ui/screenshotpanel/04-quickstart/)
