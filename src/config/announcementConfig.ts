@@ -5,7 +5,7 @@ export const announcementConfig: AnnouncementConfig = {
 	title: "公告",
 
 	// 公告内容
-	content: "欢迎来到我的博客！主要发布些unity相关的学习笔记和踩坑。",
+	content: "夏天的未白镇~",
 
 	// 是否允许用户关闭公告
 	closable: true,
